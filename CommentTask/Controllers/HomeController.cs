@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using DataProvider;
 using Services;
 using ServicesAllComment;
+using ServisecRepl;
 
 namespace CommentTask.Controllers
 {
@@ -17,21 +18,43 @@ namespace CommentTask.Controllers
         public ActionResult Index()
         {
             AllComments comment = new AllComments();
+            AllRepl repl = new AllRepl();
             if (comment.AllCom() != null)
             {
                 ViewBag.Comments = comment.AllCom();
             }
+
+            if (repl.Allrep() != null)
+            {
+                ViewBag.Answer = repl.Allrep();
+            }
+
             return View();
         }
+
         [HttpGet]
         public ActionResult Comment(string userName, string comment)
         {
-            if(userName != null&& comment != null)
+
+                if (userName != "" && comment != "")
+                {
+                    AddComment addcomment = new AddComment();
+                    addcomment.Set(userName, comment);
+                }
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult ReplAdd(string text)
+        {
+            if (text != null)
             {
-                AddComment addcomment = new AddComment();
-                addcomment.Set(userName, comment);
+                AddAnswer addRepl = new AddAnswer();
+                addRepl.Set(text);
             }
             return RedirectToAction("Index");
         }
+
+
     }
 }

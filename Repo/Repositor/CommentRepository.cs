@@ -45,11 +45,6 @@ namespace Repositories.Repositor
 
         public void UpdateComment(Comment comment)
         {
-            throw new NotImplementedException();
-        }
-
-        public void UpdateEntity(Comment comment)
-        {
             _dbContext.Entry(comment).State = EntityState.Modified;
             _dbContext.SaveChanges();
         }

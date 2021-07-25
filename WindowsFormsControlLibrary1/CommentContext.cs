@@ -1,5 +1,6 @@
 ﻿using DataProvider;
 using Model;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -12,5 +13,6 @@ namespace DataProvider
    public class CommentContext:DbContext
     {
         public DbSet<Comment> Coments { get; set; }
+        public DbSet<Repl> Answers { get; set; }
     }
 }

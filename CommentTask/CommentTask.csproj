@@ -196,9 +196,13 @@
       <Project>{c8f07ffc-6393-421d-8511-c806e1db7e05}</Project>
       <Name>Repositories</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ServicesAllComment\Services.csproj">
+    <ProjectReference Include="..\ServicesAllComment\ServicesComments.csproj">
       <Project>{40c01c07-e5be-4542-ba6e-73bc3f021edd}</Project>
-      <Name>Services</Name>
+      <Name>ServicesComments</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServisecRepl\ServisecRepl.csproj">
+      <Project>{cfb2e0c1-2879-4ffa-b97c-b25d9c0566bf}</Project>
+      <Name>ServisecRepl</Name>
     </ProjectReference>
     <ProjectReference Include="..\WindowsFormsControlLibrary1\DataProvider.csproj">
       <Project>{4B8A256F-5B28-4E74-A0A3-9EFC403EC25B}</Project>

@@ -1,7 +1,7 @@
-﻿@{
+﻿
+@{
     Layout = null;
 }
-
 <!DOCTYPE html>
 
 <html>
@@ -24,42 +24,56 @@
         @foreach (var i in ViewBag.Comments)
         {
 
-<input type="hidden" value="@i.Id" name="Id" />
+            <input type="hidden" value="@i.Id" name="Id" />
 
-<p>
-    Author: @i.UserName      Date of Post: @i.Date
-</p>
+            <p>
+                Author: @i.UserName      Date of Post: @i.Date
+            </p>
 
-    <p>
-        @i.TextComment
-    </p>
-    <p>
-        <button class="button-Comment">Reply</button>
+            <p>
+                @i.TextComment
 
-    </p>
-
-
-        }
-        @using (Html.BeginForm("Comment", "Home", FormMethod.Get))
+                @foreach (var item in ViewBag.Answer)
+                {
+                    if (item.CommentId == i.Id)
                     {
-                        ;
-        <input type="hidden" value="@ViewBag.CommentId" name="CommentId" />
-        <input type="hidden" value="@ViewBag.Date" name="Date" />
-        <table>
-            <tr>
-                <td><p>@Html.Label("UserName", "Username") </p></td>
-                <td>@Html.TextBox("userName") </td>
-            </tr>
-            <tr>
-                <td><p>@Html.Label("comment", "Message")</p></td>
-                <td>
-                    @Html.TextArea("comment")
-                </td>
-            </tr>
-            <tr><td><input type="submit" value="Send" /> </td><td></td></tr>
-        </table>
+                <p>
+                    Reply: @item.Text
+                </p>
+                        }
                     }
+             </p>
 
-        </div>
-    </body>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+                <form style="display: none" id="myForm">
+                    <input type="text" id="text" value="Enter Text" />
+                    <input type="submit" id="submit" onclick="document.location='/Home/ReplAdd/@i.Id'">
+                </form>
+
+                <input type="button" value="Reply" onclick="$('#myForm').show()" />
+
+            }
+        @using (Html.BeginForm("Comment", "Home", FormMethod.Get))
+        {
+            ;
+            <input type="hidden" value="@ViewBag.CommentId" name="CommentId" />
+            <input type="hidden" value="@ViewBag.Date" name="Date" />
+            <table>
+                <tr>
+                    <td><p>@Html.Label("UserName", "Username") </p></td>
+                    <td>@Html.TextBox("userName") </td>
+                </tr>
+                <tr>
+                    <td><p>@Html.Label("comment", "Message")</p></td>
+                    <td>
+                        @Html.TextArea("comment")
+                    </td>
+                </tr>
+                <tr><td><input type="submit" value="Send" /> </td><td></td></tr>
+            </table>
+        }
+
+    </div>
+</body>
 </html>
