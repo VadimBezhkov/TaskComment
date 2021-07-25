@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="AddAnswer.cs" />
     <Compile Include="AllRepl.cs" />
+    <Compile Include="UpdateRepl.cs" />
+    <Compile Include="GetRepl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

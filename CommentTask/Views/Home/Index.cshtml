@@ -23,37 +23,36 @@
         </p>
         @foreach (var i in ViewBag.Comments)
         {
-
             <input type="hidden" value="@i.Id" name="Id" />
 
             <p>
                 Author: @i.UserName      Date of Post: @i.Date
             </p>
 
-            <p>
                 @i.TextComment
 
-                @foreach (var item in ViewBag.Answer)
+                foreach (var item in ViewBag.Answer)
                 {
                     if (item.CommentId == i.Id)
                     {
                 <p>
                     Reply: @item.Text
                 </p>
-                        }
                     }
-             </p>
 
+                    if (item.CommentId == i.Id)
+                    {
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-                <form style="display: none" id="myForm">
+                <form style="display: none" id="myForm" action="/Home/ReplPost">
+                    <input type="hidden" value="@item.Id" name="Id" />
                     <input type="text" id="text" value="Enter Text" />
-                    <input type="submit" id="submit" onclick="document.location='/Home/ReplAdd/@i.Id'">
+                    <input type="submit" id="submit" onclick="document.location='/Home/ReplAdd/?id=@item.CommentId&text=@item.Text'" value="Reply">
                 </form>
 
                 <input type="button" value="Reply" onclick="$('#myForm').show()" />
-
-            }
+                        }
+                    }
+                }
         @using (Html.BeginForm("Comment", "Home", FormMethod.Get))
         {
             ;
