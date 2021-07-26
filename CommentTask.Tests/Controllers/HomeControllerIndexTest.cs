@@ -13,7 +13,7 @@ using System.Web.Mvc;
 namespace CommentTask.Tests.Controllers
 {
     [TestClass]
-    public class HomeControllerTest
+    public class HomeControllerIndexTest
     {
 
         private HomeController controller;
@@ -39,24 +39,24 @@ namespace CommentTask.Tests.Controllers
         }
 
         [TestMethod]
-        public void IndexStringInViewbag()
+        public void IndexAreNotEqualViewbag()
         {
             Assert.AreNotEqual(result.ViewBag.Answer, result.ViewBag.Comments);
         }
         [TestMethod]
-        public void IndexStringInViewbag111()
+        public void IndexIsNotNullViewbagAnswer()
         {
             Assert.IsNotNull(result.ViewBag.Answer);
         }
         [TestMethod]
-        public void IndexStringInViewbag1111()
+        public void IndexIsNotNullViewbagComments()
         {
             Assert.IsNotNull(result.ViewBag.Comments);
         }
           [TestMethod]
-        public void IndexStringInViewbag12111()
+        public void IndexAreNotSameInViewbag()
         {
-            Assert.IsInstanceOfType(result.ViewBag.Comments,new AllComments);
+            Assert.AreNotSame(result.ViewBag.Comments, result.ViewBag.Answer);
         }
     }
 }
