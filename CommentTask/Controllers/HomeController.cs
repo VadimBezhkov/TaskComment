@@ -30,7 +30,7 @@ namespace CommentTask.Controllers
                 ViewBag.Answer = repl.Allrep();
             }
 
-            return View();
+            return View("Index");
         }
 
         [HttpGet]

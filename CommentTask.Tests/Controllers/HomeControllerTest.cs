@@ -12,9 +12,11 @@ namespace CommentTask.Tests.Controllers
     [TestClass]
     public class HomeControllerTest
     {
+     
         [TestMethod]
-        public void Index()
+        public void IndexViewResultNotNull()
         {
+        
             // Arrange
             HomeController controller = new HomeController();
 
@@ -26,29 +28,16 @@ namespace CommentTask.Tests.Controllers
         }
 
         [TestMethod]
-        public void About()
+        public void IndexViewEqualIndexCshtml()
         {
             // Arrange
             HomeController controller = new HomeController();
 
             // Act
-            ViewResult result = controller.About() as ViewResult;
+            ViewResult result = controller.Index() as ViewResult;
 
             // Assert
-            Assert.AreEqual("Your application description page.", result.ViewBag.Message);
-        }
-
-        [TestMethod]
-        public void Contact()
-        {
-            // Arrange
-            HomeController controller = new HomeController();
-
-            // Act
-            ViewResult result = controller.Contact() as ViewResult;
-
-            // Assert
-            Assert.IsNotNull(result);
+            Assert.AreEqual("Index", result.ViewName);
         }
     }
 }

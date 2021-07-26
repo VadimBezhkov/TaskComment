@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Repositories.Repositor
 {
-    public class ReplRepository : IReplRepository<Repl>
+    public class ReplRepository : IDisposable, IReplRepository<Repl>
     {
         private CommentContext _dbContext;
         private DbSet<Repl> repl;
@@ -48,6 +48,24 @@ namespace Repositories.Repositor
         {
             _dbContext.Entry(repl).State = EntityState.Modified;
             _dbContext.SaveChanges();
+        }
+
+        protected void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (_dbContext != null)
+                {
+                    _dbContext.Dispose();
+                    _dbContext = null;
+                }
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }

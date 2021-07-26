@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Repositories.Repositor
 {
-    public class CommentRepository : ICommentRepository<Comment>
+    public class CommentRepository :IDisposable, ICommentRepository<Comment>
     {
         private CommentContext _dbContext;
         private DbSet<Comment> comment;
@@ -33,11 +33,6 @@ namespace Repositories.Repositor
             _dbContext.SaveChanges();
         }
 
-        public IEnumerable<Comment> GetAll()
-        {
-            return comment.ToList();
-        }
-
         public Comment GetById(int id)
         {
             return comment.Find(id);
@@ -48,5 +43,28 @@ namespace Repositories.Repositor
             _dbContext.Entry(comment).State = EntityState.Modified;
             _dbContext.SaveChanges();
         }
+        public IEnumerable<Comment> GetAll()
+        {
+            return comment.ToList();
+        }
+
+        protected void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (_dbContext != null)
+                {
+                    _dbContext.Dispose();
+                    _dbContext = null;
+                }
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
     }
 }
