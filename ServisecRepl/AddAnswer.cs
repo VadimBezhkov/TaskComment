@@ -12,10 +12,11 @@ namespace ServisecRepl
    public class AddAnswer
     {
         private ReplRepository _replRepository = new ReplRepository(new DataProvider.CommentContext());
-        public void Set(string text)
+        public void Set(string text,int Id)
         {
             Repl repl = new Repl();
             repl.Text = text;
+            repl.CommentId = Id;
             _replRepository.AddRepl(repl);
         }
 

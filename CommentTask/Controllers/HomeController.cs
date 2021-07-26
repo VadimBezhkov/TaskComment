@@ -45,13 +45,13 @@ namespace CommentTask.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpGet]
-        public ActionResult ReplAdd(int id ,string text)
+        [HttpPost]
+        public ActionResult ReplAdd(int id ,string textreply)
         {
-            if (text != null)
+            if (textreply != "")
             {
                 AddAnswer addRepl = new AddAnswer();
-                addRepl.Set(text);
+                addRepl.Set(textreply,id);
             }
             return RedirectToAction("Index");
         }

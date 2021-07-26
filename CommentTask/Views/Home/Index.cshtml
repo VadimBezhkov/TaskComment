@@ -1,5 +1,4 @@
-﻿@model IEnumerable<Models.Repl>
-@{
+﻿@{
     Layout = null;
 }
 <!DOCTYPE html>
@@ -43,12 +42,14 @@
                     </div>
                 }
             }
+
             <div>
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-                <form style="display: none" id="myForm_@i.Id">
-                    <input type="text" id="textreply_@i.Id" value="Enter Text" onkeypress="getValue()"/>
-                    <input type="submit" id="submit" onclick="document.location = '/Home/ReplAdd/?id=@i.Id&text=@Model'" value="Reply">
+                <form method="post" style="display: none" id="myForm_@i.Id" action="/Home/ReplAdd">
+                    <input type="hidden" value="@i.Id" name="Id" />
+                    <input type="text" id="textreply" value="Enter Text" name="textreply" />
+                    <input type="submit" id="submit"  value="Reply">
                 </form>
                 <input type="button" value="Reply" onclick="$('#myForm_@i.Id').show()" />
 
