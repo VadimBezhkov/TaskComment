@@ -55,25 +55,6 @@ namespace CommentTask.Controllers
             }
             return RedirectToAction("Index");
         }
-        public ActionResult ReplPost(int Id)
-        {
-            GetRepl rep = new GetRepl();
-            var result= rep.Search(Id);
-
-            ViewBag.Id = result.Id;
-            ViewBag.Text = result.Text;
-            ViewBag.CommentId = result.CommentId;
-            return PartialView(result);
-        }
-        [HttpPost]
-        public ActionResult EditPost(Repl post)
-        {
-
-            UpdateRepl rep = new UpdateRepl();
-            rep.Update(post);
-
-            return RedirectToAction("Index");
-        }
 
     }
 }

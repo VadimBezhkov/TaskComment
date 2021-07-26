@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<Models.Repl>
 @{
     Layout = null;
 }
@@ -21,6 +21,7 @@
             remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
             and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
         </p>
+        
         @foreach (var i in ViewBag.Comments)
         {
             <input type="hidden" value="@i.Id" name="Id" />
@@ -29,30 +30,30 @@
                 Author: @i.UserName      Date of Post: @i.Date
             </p>
 
-                @i.TextComment
+            @i.TextComment
 
-                foreach (var item in ViewBag.Answer)
+            foreach (var item in ViewBag.Answer)
+            {
+                if (item.CommentId == i.Id)
                 {
-                    if (item.CommentId == i.Id)
-                    {
-                <p>
-                    Reply: @item.Text
-                </p>
-                    }
-
-                    if (item.CommentId == i.Id)
-                    {
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-                <form style="display: none" id="myForm" action="/Home/ReplPost">
-                    <input type="hidden" value="@item.Id" name="Id" />
-                    <input type="text" id="text" value="Enter Text" />
-                    <input type="submit" id="submit" onclick="document.location='/Home/ReplAdd/?id=@item.CommentId&text=@item.Text'" value="Reply">
-                </form>
-
-                <input type="button" value="Reply" onclick="$('#myForm').show()" />
-                        }
-                    }
+                    <div>
+                    <p>
+                        Reply: @item.Text
+                    </p>
+                    </div>
                 }
+            }
+            <div>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+                <form style="display: none" id="myForm_@i.Id">
+                    <input type="text" id="textreply_@i.Id" value="Enter Text" onkeypress="getValue()"/>
+                    <input type="submit" id="submit" onclick="document.location = '/Home/ReplAdd/?id=@i.Id&text=@Model'" value="Reply">
+                </form>
+                <input type="button" value="Reply" onclick="$('#myForm_@i.Id').show()" />
+
+            </div>
+        }
         @using (Html.BeginForm("Comment", "Home", FormMethod.Get))
         {
             ;
