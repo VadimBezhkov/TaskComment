@@ -11,10 +11,10 @@ namespace Model
    public class Comment
     {
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Enter your name")]
         [Display(Name = "User Name")]
         public string UserName { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Enter text comment")]
         [Display(Name = "Text")]
         public string TextComment { get; set; }
         public DateTime Date { get; set; }

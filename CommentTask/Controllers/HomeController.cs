@@ -34,21 +34,29 @@ namespace CommentTask.Controllers
         }
 
         [HttpGet]
-        public ActionResult Comment(string userName, string comment)
+        public ActionResult Comment([Bind(Include = "UserName,TextComment")] string userName, string comment)
         {
+            if (string.IsNullOrEmpty(comment))
+            {
+                ModelState.AddModelError("comment", "no value entered");  
+            }
+            if (string.IsNullOrEmpty(userName))
+            {
+                ModelState.AddModelError("UserName", "no value entered");
+            }
 
-                if (userName != "" && comment != "")
+            if (ModelState.IsValid)
                 {
                     AddComment addcomment = new AddComment();
                     addcomment.Set(userName, comment);
-                }
+            }
             return RedirectToAction("Index");
         }
 
         [HttpPost]
         public ActionResult ReplAdd(int id ,string textreply)
         {
-            if (textreply != "")
+            if (!string.IsNullOrEmpty(textreply))
             {
                 AddAnswer addRepl = new AddAnswer();
                 addRepl.Set(textreply,id);
