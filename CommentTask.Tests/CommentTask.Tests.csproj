@@ -95,11 +95,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
-    <Content Include="Scripts\jquery-1.8.0.intellisense.js" />
-    <Content Include="Scripts\jquery-1.8.0.js" />
-    <Content Include="Scripts\jquery-1.8.0.min.js" />
-    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
-    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -108,6 +103,10 @@
     <ProjectReference Include="..\CommentTask\CommentTask.csproj">
       <Project>{5494750B-1456-4D6C-8F89-99D15668BB0F}</Project>
       <Name>CommentTask</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Models\Model.csproj">
+      <Project>{6C65264D-942E-48C9-9706-77492F4A8CDD}</Project>
+      <Name>Model</Name>
     </ProjectReference>
     <ProjectReference Include="..\Repo\Repositories.csproj">
       <Project>{c8f07ffc-6393-421d-8511-c806e1db7e05}</Project>
