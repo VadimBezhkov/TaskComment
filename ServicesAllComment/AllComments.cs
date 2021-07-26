@@ -1,4 +1,5 @@
 ﻿using Model;
+using Repositories.Interfaces;
 using Repositories.Repositor;
 using ServicesAllComment.Intarface;
 using System;
@@ -11,7 +12,7 @@ namespace ServicesAllComment
 {
     public class AllComments: IAllComments
     {
-        private CommentRepository _comentRepository = new CommentRepository(new DataProvider.CommentContext());
+        private IGenericRepository<Comment> _comentRepository = new CommentRepository(new DataProvider.CommentContext());
         public IEnumerable<Comment> AllCom()
         {
             return _comentRepository.GetAll();

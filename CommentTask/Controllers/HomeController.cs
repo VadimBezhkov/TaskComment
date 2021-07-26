@@ -49,7 +49,7 @@ namespace CommentTask.Controllers
 
             if (ModelState.IsValid)
                 {
-                    AddComment addcomment = new AddComment();
+                    IAddComment addcomment = new AddComment();
                     addcomment.Set(userName, comment);
             }
             return RedirectToAction("Index");

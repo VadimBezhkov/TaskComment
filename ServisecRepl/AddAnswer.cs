@@ -1,4 +1,5 @@
 ﻿using Models;
+using Repositories.Interfaces;
 using Repositories.Repositor;
 using Services;
 using ServisecRepl.Interface;
@@ -13,7 +14,7 @@ namespace ServisecRepl
 {
    public class AddAnswer:IAddAnswer
     {
-        private ReplRepository _replRepository = new ReplRepository(new DataProvider.CommentContext());
+        private IGenericRepository<Repl> _replRepository = new ReplRepository(new DataProvider.CommentContext());
         public void Set(string text,int Id)
         {
             Repl repl = new Repl();

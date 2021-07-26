@@ -1,5 +1,6 @@
 ﻿using DataProvider;
 using Model;
+using Repositories.Interfaces;
 using Repositories.Repositor;
 using ServicesAllComment.Intarface;
 using System;
@@ -12,7 +13,7 @@ namespace Services
 {
     public class AddComment:IAddComment
     {
-        private CommentRepository _comentRepository = new CommentRepository(new DataProvider.CommentContext());
+        private IGenericRepository<Comment> _comentRepository = new CommentRepository(new DataProvider.CommentContext());
         public void Set(string UserName,string comment)
         {
             Comment com = new Comment();

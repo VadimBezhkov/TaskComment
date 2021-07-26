@@ -1,5 +1,6 @@
 ﻿using Model;
 using Models;
+using Repositories.Interfaces;
 using Repositories.Repositor;
 using ServisecRepl.Interface;
 using System;
@@ -12,7 +13,7 @@ namespace ServicesAllComment
 {
     public class AllRepl:IAllRepl
     {
-        private ReplRepository _replRepository = new ReplRepository(new DataProvider.CommentContext());
+        private IGenericRepository<Repl> _replRepository = new ReplRepository(new DataProvider.CommentContext());
         public IEnumerable<Repl> Allrep()
         {
             return _replRepository.GetAll();
