@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Repositories.Repositor
 {
-    public class ReplRepository : IDisposable, IReplRepository<Repl>
+    public class ReplRepository : IDisposable, IGenericRepository<Repl>
     {
         private CommentContext _dbContext;
         private DbSet<Repl> repl;
@@ -21,13 +21,13 @@ namespace Repositories.Repositor
             repl = _dbContext.Answers;
         }
 
-        public void AddRepl(Repl rep)
+        public void Add(Repl rep)
         {
             repl.Add(rep);
             _dbContext.SaveChanges();
         }
 
-        public void DeleteRepl(int id)
+        public void Delete(int id)
         {
             var replRemove = repl.Find(id);
             repl.Remove(replRemove);
@@ -44,7 +44,7 @@ namespace Repositories.Repositor
             return repl.Find(id);
         }
 
-        public void UpdateRepl(Repl repl)
+        public void Update(Repl repl)
         {
             _dbContext.Entry(repl).State = EntityState.Modified;
             _dbContext.SaveChanges();

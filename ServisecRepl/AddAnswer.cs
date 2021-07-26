@@ -19,7 +19,7 @@ namespace ServisecRepl
             Repl repl = new Repl();
             repl.Text = text;
             repl.CommentId = Id;
-            _replRepository.AddRepl(repl);
+            _replRepository.Add(repl);
         }
 
     }

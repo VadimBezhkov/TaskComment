@@ -19,7 +19,7 @@ namespace Services
             com.UserName = UserName;
             com.TextComment = comment;
             com.Date = DateTime.Now;
-            _comentRepository.AddComment(com);
+            _comentRepository.Add(com);
         }
       
 

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Repositories.Repositor
 {
-    public class CommentRepository :IDisposable, ICommentRepository<Comment>
+    public class CommentRepository :IDisposable, IGenericRepository<Comment>
     {
         private CommentContext _dbContext;
         private DbSet<Comment> comment;
@@ -20,13 +20,13 @@ namespace Repositories.Repositor
             comment = _dbContext.Coments;
         }
 
-        public void AddComment(Comment com)
+        public void Add(Comment com)
         {
             comment.Add(com);
             _dbContext.SaveChanges();
         }
 
-        public void DeleteComment(int id)
+        public void Delete(int id)
         {
             var commentRemove = comment.Find(id);
             comment.Remove(commentRemove);
@@ -38,7 +38,7 @@ namespace Repositories.Repositor
             return comment.Find(id);
         }
 
-        public void UpdateComment(Comment comment)
+        public void Update(Comment comment)
         {
             _dbContext.Entry(comment).State = EntityState.Modified;
             _dbContext.SaveChanges();
