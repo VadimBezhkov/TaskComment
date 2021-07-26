@@ -1,5 +1,7 @@
 ﻿using Models;
 using Repositories.Repositor;
+using Services;
+using ServisecRepl.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace ServisecRepl
 {
-   public class AddAnswer
+   public class AddAnswer:IAddAnswer
     {
         private ReplRepository _replRepository = new ReplRepository(new DataProvider.CommentContext());
         public void Set(string text,int Id)

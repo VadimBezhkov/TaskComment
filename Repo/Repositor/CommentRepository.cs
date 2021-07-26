@@ -45,7 +45,7 @@ namespace Repositories.Repositor
         }
         public IEnumerable<Comment> GetAll()
         {
-            return comment.ToList();
+            return comment;
         }
 
         protected void Dispose(bool disposing)

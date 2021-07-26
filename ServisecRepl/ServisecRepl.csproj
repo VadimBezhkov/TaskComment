@@ -43,8 +43,8 @@
   <ItemGroup>
     <Compile Include="AddAnswer.cs" />
     <Compile Include="AllRepl.cs" />
-    <Compile Include="UpdateRepl.cs" />
-    <Compile Include="GetRepl.cs" />
+    <Compile Include="Interface\IAddAnswer.cs" />
+    <Compile Include="Interface\IAllRepl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -55,6 +55,10 @@
     <ProjectReference Include="..\Repo\Repositories.csproj">
       <Project>{c8f07ffc-6393-421d-8511-c806e1db7e05}</Project>
       <Name>Repositories</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServicesAllComment\ServicesComments.csproj">
+      <Project>{40C01C07-E5BE-4542-BA6E-73BC3F021EDD}</Project>
+      <Name>ServicesComments</Name>
     </ProjectReference>
     <ProjectReference Include="..\WindowsFormsControlLibrary1\DataProvider.csproj">
       <Project>{4b8a256f-5b28-4e74-a0a3-9efc403ec25b}</Project>

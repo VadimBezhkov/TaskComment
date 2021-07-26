@@ -10,6 +10,8 @@ using Services;
 using ServicesAllComment;
 using ServisecRepl;
 using Models;
+using ServicesAllComment.Intarface;
+using ServisecRepl.Interface;
 
 namespace CommentTask.Controllers
 {
@@ -18,8 +20,8 @@ namespace CommentTask.Controllers
     {
         public ActionResult Index()
         {
-            AllComments comment = new AllComments();
-            AllRepl repl = new AllRepl();
+            IAllComments comment = new AllComments();
+            IAllRepl repl = new AllRepl();
             if (comment.AllCom() != null)
             {
                 ViewBag.Comments = comment.AllCom();
@@ -58,7 +60,7 @@ namespace CommentTask.Controllers
         {
             if (!string.IsNullOrEmpty(textreply))
             {
-                AddAnswer addRepl = new AddAnswer();
+                IAddAnswer addRepl = new AddAnswer();
                 addRepl.Set(textreply,id);
             }
             return RedirectToAction("Index");
