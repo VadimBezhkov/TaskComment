@@ -36,9 +36,9 @@ namespace CommentTask.Controllers
         }
 
         [HttpGet]
-        public ActionResult Comment([Bind(Include = "UserName,TextComment")] string userName, string comment)
+        public ActionResult Comment([Bind(Include = "UserName,TextComment")] string userName, string textComment)
         {
-            if (string.IsNullOrEmpty(comment))
+            if (string.IsNullOrEmpty(textComment))
             {
                 ModelState.AddModelError("comment", "no value entered");  
             }
@@ -50,7 +50,7 @@ namespace CommentTask.Controllers
             if (ModelState.IsValid)
                 {
                     IAddComment addcomment = new AddComment();
-                    addcomment.Set(userName, comment);
+                    addcomment.Set(userName, textComment);
             }
             return RedirectToAction("Index");
         }

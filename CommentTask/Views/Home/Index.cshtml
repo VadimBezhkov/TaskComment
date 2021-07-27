@@ -1,89 +1,98 @@
-﻿@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+﻿@model Model.Comment
+@{
+    ViewBag.Title = "TaskTest";
 }
-<!DOCTYPE html>
+<div>
+    <h3>Article</h3>
+    <p>
+        What is Lorem Ipsum?
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+        when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+        It has survived not only five centuries, but also the leap into electronic typesetting,
+        remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
+        and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>The Task</title>
-</head>
-<body>
-    <div>
-        <h3>Article</h3>
+    </p>
+    <br />
+    <br />
+
+    @foreach (var i in ViewBag.Comments)
+    {
+        <input type="hidden" value="@i.Id" name="Id" />
+        <hr>
         <p>
-            What is Lorem Ipsum?
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-            when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-            It has survived not only five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
-            and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-            
+            Author: <i><span style="font-size:20px">@i.UserName</span></i>      Date of Post: <i>@i.Date</i>
         </p>
-            <br/>
-        <br/>
 
-            @foreach (var i in ViewBag.Comments)
+        @i.TextComment
+
+        <br />
+        <br />
+        foreach (var item in ViewBag.Answer)
+        {
+            if (item.CommentId == i.Id)
             {
-                <input type="hidden" value="@i.Id" name="Id" />
-                <hr>
-            <p>
-                Author: <i><span style="font-size:20px">@i.UserName</span></i>      Date of Post: <i>@i.Date</i>
-            </p>
-
-            @i.TextComment
-
-
-            foreach (var item in ViewBag.Answer)
-            {
-                if (item.CommentId == i.Id)
-                {
-                    <div>
-                        <p style="color:red">
-                            Reply: <span style="color:black">@item.Text </span>
-                        </p>
-                    </div>
-                }
+                <div>
+                    <p style="color:red">
+                        Reply: <span style="color:black">@item.Text </span>
+                    </p>
+                </div>
             }
-
-            <div>
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-                <form method="post" style="display: none" id="myForm_@i.Id" action="/Home/ReplAdd">
-                    <input type="hidden" value="@i.Id" name="Id" />
-                    <input type="text" id="textreply" value="Enter Text" name="textreply" />
-                    <input type="submit" id="submit" value="Reply">
-                </form>
-                <input type="button" value="Reply" onclick="$('#myForm_@i.Id').show()" />
-
-            </div>
         }
-            <hr>
-            <h3>Enter your comment</h3>
-            @using (Html.BeginForm("Comment", "Home", FormMethod.Get))
-            {
-                @Html.AntiForgeryToken()
+        <br />
+        <div>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-                <input type="hidden" value="@ViewBag.CommentId" name="CommentId" />
-                <input type="hidden" value="@ViewBag.Date" name="Date" />
-                <table>
-                    <tr>
-                        <td><p>@Html.Label("UserName", "Username") </p></td>
-                        <td>
-                            @Html.TextBox("userName")
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><p>@Html.Label("comment", "Message")</p></td>
-                        <td>
-                            @Html.TextArea("comment")
-                        </td>
-                    </tr>
-                    <tr><td><input type="submit" value="Send" /> </td><td></td></tr>
-                </table>
-            }
-
+            <form method="post" style="display: none" id="myForm_@i.Id" action="/Home/ReplAdd">
+                <input type="hidden" value="@i.Id" name="Id" />
+                <input class="text-box form-control" type="text" id="textreply" value="Enter Text" name="textreply" />
+                <input type="submit" id="submit" value="Reply" class="btn btn-danger" />
+            </form>
+            <div>
+                <input type="button" value="Reply" onclick="$('#myForm_@i.Id').show()" class="btn btn-default" />
+            </div>
         </div>
-    </body>
-</html>
+    }
+    <hr>
+    <h3>Enter your comment</h3>
+    @using (Html.BeginForm("Comment", "Home", FormMethod.Get))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                    <br />
+                    @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.TextComment, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.TextComment, new { htmlAttributes = new { @class = "form-control" } })
+                    <br />
+                    @Html.ValidationMessageFor(model => model.TextComment, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+
+    }
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
