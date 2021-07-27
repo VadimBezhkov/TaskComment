@@ -58,5 +58,6 @@ namespace CommentTask.Tests.Controllers
         {
             Assert.AreNotSame(result.ViewBag.Comments, result.ViewBag.Answer);
         }
+
     }
 }

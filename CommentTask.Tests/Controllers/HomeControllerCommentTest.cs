@@ -25,48 +25,39 @@ namespace CommentTask.Tests.Controllers
         public void SetupContext()
         {
             controller = new HomeController();
-            result = controller.Comment(name,text) as RedirectResult;
+            result = controller.Comment(name, text) as RedirectResult;
             name = "Vadim";
             text = "Hello";
         }
 
         [TestMethod]
-        public void IndexViewResultNotNull()
+        public void CommentViewResultIsNull()
         {
             Assert.IsNull(result);
         }
 
         [TestMethod]
-        public void IndexViewEqualCommentCshtml()
+        public void CommentViewEqualCommentCshtml()
         {
             Assert.AreNotEqual("Index", result);
         }
 
         [TestMethod]
-        public void IndexViewEqualCommentAreEqual()
+        public void CommentAreNotSameParams()
         {
-            Assert.AreEqual(name,text);
+            Assert.AreNotSame(name, text);
         }
 
-        //[TestMethod]
-        //public void IndexAreNotEqualViewbag()
-        //{
-        //    Assert.AreNotEqual(result.ViewBag.Answer, result.ViewBag.Comments);
-        //}
-        //[TestMethod]
-        //public void IndexIsNotNullViewbagAnswer()
-        //{
-        //    Assert.IsNotNull(result.ViewBag.Answer);
-        //}
-        //[TestMethod]
-        //public void IndexIsNotNullViewbagComments()
-        //{
-        //    Assert.IsNotNull(result.ViewBag.Comments);
-        //}
-        //  [TestMethod]
-        //public void IndexAreNotSameInViewbag()
-        //{
-        //    Assert.AreNotSame(result.ViewBag.Comments, result.ViewBag.Answer);
-        //}
+        [TestMethod]
+        public void CommentViewEqualAreEqual()
+        {
+            Assert.AreNotEqual(name,text);
+        }
+
+        [TestMethod]
+        public void CommentViewIsTrue()
+        {
+            Assert.IsTrue(name!=text, "Index");
+        }
     }
 }
