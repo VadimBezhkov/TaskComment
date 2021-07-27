@@ -22,7 +22,7 @@
         <input type="hidden" value="@i.Id" name="Id" />
         <hr>
         <p>
-            Author: <i><span style="font-size:20px">@i.UserName</span></i>      Date of Post: <i>@i.Date</i>
+            Author: <i><span class="autorcomment">@i.UserName</span></i>      Date of Post: <i><span class="dateautor">@i.Date</span></i>
         </p>
 
         @i.TextComment
@@ -34,7 +34,7 @@
             if (item.CommentId == i.Id)
             {
                 <div>
-                    <p style="color:red">
+                    <p class="reply">
                         Reply: <span style="color:black">@item.Text </span>
                     </p>
                 </div>
@@ -42,8 +42,6 @@
         }
         <br />
         <div>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
             <form method="post" style="display: none" id="myForm_@i.Id" action="/Home/ReplAdd">
                 <input type="hidden" value="@i.Id" name="Id" />
                 <input class="text-box form-control" type="text" id="textreply" placeholder="Enter your text" name="textreply" />
@@ -83,7 +81,7 @@
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
+                    <input type="submit" value="Send" class="btn btn-default" />
                 </div>
             </div>
         </div>

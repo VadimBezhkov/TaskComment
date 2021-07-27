@@ -26,6 +26,8 @@ namespace CommentTask.Tests.Controllers
         {
             controller = new HomeController();
             result = controller.Comment(name,text) as RedirectResult;
+            name = "Vadim";
+            text = "Hello";
         }
 
         [TestMethod]

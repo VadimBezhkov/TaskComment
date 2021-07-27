@@ -22,7 +22,13 @@ select,
 textarea {
     max-width: 280px;
 }
-span.autor{
-font-size:20px;
-color:aqua;
+.reply {
+    color: red;
+    padding-left: 30px;
+}
+.autorcomment {
+    font-size: 26px;
+}
+.dateautor{
+    font-size:18px;
 }
