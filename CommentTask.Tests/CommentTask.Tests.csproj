@@ -90,7 +90,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\HomeControllerComment.cs" />
+    <Compile Include="Controllers\HomeControllerCommentTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerIndexTest.cs" />
   </ItemGroup>
@@ -116,6 +116,10 @@
     <ProjectReference Include="..\ServicesAllComment\ServicesComments.csproj">
       <Project>{40c01c07-e5be-4542-ba6e-73bc3f021edd}</Project>
       <Name>ServicesComments</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServisecRepl\ServisecRepl.csproj">
+      <Project>{cfb2e0c1-2879-4ffa-b97c-b25d9c0566bf}</Project>
+      <Name>ServisecRepl</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
