@@ -51,9 +51,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddComment.cs" />
+    <Compile Include="CommentHelper.cs" />
     <Compile Include="AllComments.cs" />
-    <Compile Include="Intarface\IAddComment.cs" />
+    <Compile Include="Intarface\ICommentHelper.cs" />
     <Compile Include="Intarface\IAllComments.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

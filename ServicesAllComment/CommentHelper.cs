@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    public class AddComment:IAddComment
+    public class CommentHelper: ICommentHelper
     {
         private IGenericRepository<Comment> _comentRepository = new CommentRepository(new DataProvider.CommentContext());
         public void Set(string UserName,string comment)

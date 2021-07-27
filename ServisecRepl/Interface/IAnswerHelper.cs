@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ServicesAllComment.Intarface
+namespace ServisecRepl.Interface
 {
-   public interface IAddComment
+    public interface IAnswerHelper
     {
-         void Set(string UserName, string comment);
+        void Set(string text, int Id);
     }
 }

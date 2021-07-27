@@ -41,9 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddAnswer.cs" />
+    <Compile Include="AnswerHelper.cs" />
     <Compile Include="AllRepl.cs" />
-    <Compile Include="Interface\IAddAnswer.cs" />
+    <Compile Include="Interface\IAnswerHelper.cs" />
     <Compile Include="Interface\IAllRepl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

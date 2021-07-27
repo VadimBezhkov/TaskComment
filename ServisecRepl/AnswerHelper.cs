@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace ServisecRepl
 {
-   public class AddAnswer:IAddAnswer
+   public class AnswerHelper:IAnswerHelper
     {
         private IGenericRepository<Repl> _replRepository = new ReplRepository(new DataProvider.CommentContext());
         public void Set(string text,int Id)

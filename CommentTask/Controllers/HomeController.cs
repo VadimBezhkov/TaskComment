@@ -49,8 +49,8 @@ namespace CommentTask.Controllers
 
             if (ModelState.IsValid)
                 {
-                    IAddComment addcomment = new AddComment();
-                    addcomment.Set(userName, textComment);
+                ICommentHelper commenthelper = new CommentHelper();
+                commenthelper.Set(userName, textComment);
             }
             return RedirectToAction("Index");
         }
@@ -60,7 +60,7 @@ namespace CommentTask.Controllers
         {
             if (!string.IsNullOrEmpty(textreply))
             {
-                IAddAnswer addRepl = new AddAnswer();
+                IAnswerHelper addRepl = new AnswerHelper();
                 addRepl.Set(textreply,id);
             }
             return RedirectToAction("Index");
