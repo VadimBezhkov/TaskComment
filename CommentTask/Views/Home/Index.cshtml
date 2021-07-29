@@ -15,19 +15,38 @@
 ";
 
         res += $@"<form method=""post"" style=""display: none"" id=""myForm_{repl.Id}"" action=""/Home/ReplReplyAdd"">
-        <input type=""hidden"" value=""{repl.Id}"" name=""Id"" />
-        <input class=""text-box form-control"" type=""text"" id=""textreply"" placeholder=""Enter your text"" name=""textreply"" />
-        <input type=""submit"" id=""submit"" value=""Reply"" class=""btn btn-danger"" />
-    </form>
-    <div class=""replybutton"">
-        <input type=""button"" value=""Reply"" onclick=""$('#myForm_{repl.Id}').show()"" class=""btn btn-default"" />
-    </div>
-    ";
+    <input type=""hidden"" value=""{repl.Id}"" name=""Id"" />
+    <input class=""text-box form-control"" type=""text"" id=""textreply"" placeholder=""Enter your text"" name=""textreply"" />
+    <input type=""submit"" id=""submit"" value=""Reply"" class=""btn btn-danger"" />
+</form>
+<div class=""replybutton"">
+    <input type=""button"" value=""Reply"" onclick=""$('#myForm_{repl.Id}').show()"" class=""btn btn-default"" />
+</div>
+";
         foreach (var child in repl.Childrens)
         {
             res += RecursChildrens(child, padding + 30);
 
         }
+
+        return res;
+    }
+}
+
+@functions
+{
+
+    string CommentFormRepl(Model.Comment comm)
+    {
+       var res = $@"<form method=""post"" style=""display: none"" id=""myForm_{comm.Id}"" action=""/Home/ReplReplyAdd"">
+    <input type=""hidden"" value=""{comm.Id}"" name=""Id"" />
+    <input class=""text-box form-control"" type=""text"" id=""textreply"" placeholder=""Enter your text"" name=""textreply"" />
+    <input type=""submit"" id=""submit"" value=""Reply"" class=""btn btn-danger"" />
+</form>
+<div class=""replybutton"">
+    <input type=""button"" value=""Reply"" onclick=""$('#myForm_{comm.Id}').show()"" class=""btn btn-default"" />
+</div>
+";
 
         return res;
     }
@@ -97,7 +116,7 @@
         <p class="mycomment">
             Comment:         @i.TextComment
         </p>
-
+        @*@Html.Raw(CommentFormRepl(i));*@
         foreach (var item in ViewBag.Answer)
         {
             if (item.CommentId == i.Id)
@@ -125,7 +144,7 @@
                                     }
                     }*@
 
-                    @Html.Raw(RecursChildrens(item, 60))
+                @Html.Raw(RecursChildrens(item, 60))
 
             }
 
@@ -133,15 +152,16 @@
 
         <br />
         <div>
-            <form method="post" style="display: none" id="myForm_@i.Id" action="/Home/ReplAdd">
-                <input type="hidden" value="@i.Id" name="Id" />
-                <input class="text-box form-control" type="text" id="textreply" placeholder="Enter your text" name="textreply" />
-                <input type="submit" id="submit" value="Reply" class="btn btn-danger" />
-            </form>
-            <div class="replybutton">
-                <input type="button" value="Reply Comment" onclick="$('#myForm_@i.Id').show()" class="btn btn-default" />
-            </div>
+                <form method="post" style="display: none" id="myForm_Comment_@i.Id" action="/Home/ReplAdd">
+                    <input type="hidden" value="@i.Id" name="Id" />
+                    <input class="text-box form-control" type="text" id="textreply" placeholder="Enter your text" name="textreply" />
+                    <input type="submit" id="submit" value="Reply" class="btn btn-danger" />
+                </form>
+                <div class="replybutton">
+                    <input type="button" value="Reply Comment" onclick="$('#myForm_Comment_@i.Id').show()" class="btn btn-default" />
+                </div>
         </div>
+
     }
 
 

@@ -17,7 +17,7 @@ namespace Models
         public int? ParentId { get; set; }
 
         [ForeignKey("ParentId")]
-        public List<Repl> Childrens
+        public virtual List<Repl> Childrens
         {
             get
             {
