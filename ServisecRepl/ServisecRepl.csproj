@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnswerRepl.cs" />
     <Compile Include="AnswerHelper.cs" />
     <Compile Include="AllRepl.cs" />
     <Compile Include="Interface\IAnswerHelper.cs" />

@@ -36,7 +36,7 @@ namespace Repositories.Repositor
 
         public IEnumerable<Repl> GetAll()
         {
-            return repl;
+            return repl.Include(m=>m.Childrens);
         }
 
         public Repl GetById(int id)

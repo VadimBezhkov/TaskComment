@@ -22,6 +22,7 @@ namespace CommentTask.Controllers
         {
             IAllComments comment = new AllComments();
             IAllRepl repl = new AllRepl();
+                        
             if (comment.AllCom() != null)
             {
                 ViewBag.Comments = comment.AllCom();
@@ -62,6 +63,17 @@ namespace CommentTask.Controllers
             {
                 IAnswerHelper addRepl = new AnswerHelper();
                 addRepl.Set(textreply,id);
+            }
+            return RedirectToAction("Index");
+        }
+        
+        [HttpPost]
+        public ActionResult ReplReplyAdd(int id, string textreply)
+        {
+            if (!string.IsNullOrEmpty(textreply))
+            {
+                IAnswerHelper addRepl = new AnswerRepl();
+                addRepl.Set(textreply, id);
             }
             return RedirectToAction("Index");
         }

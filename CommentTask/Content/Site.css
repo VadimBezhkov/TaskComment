@@ -24,7 +24,6 @@ textarea {
 }
 .reply {
     color: red;
-    padding-left: 30px;
 }
 .autorcomment {
     font-size: 26px;
@@ -34,4 +33,8 @@ textarea {
 }
 .replybutton{
     margin-left:325px;
+}
+.mycomment{
+    color: chartreuse;
+    font-size: 18px;
 }

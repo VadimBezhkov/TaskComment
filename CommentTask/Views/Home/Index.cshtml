@@ -2,6 +2,36 @@
 @{
     ViewBag.Title = "TaskTest";
 }
+
+@functions
+{
+
+    string RecursChildrens(Models.Repl repl, int padding)
+    {
+        var res = $@"<p style=padding-left:{padding}px>
+Reply
+{repl.Text}
+</p>
+";
+
+        res += $@"<form method=""post"" style=""display: none"" id=""myForm_{repl.Id}"" action=""/Home/ReplReplyAdd"">
+        <input type=""hidden"" value=""{repl.Id}"" name=""Id"" />
+        <input class=""text-box form-control"" type=""text"" id=""textreply"" placeholder=""Enter your text"" name=""textreply"" />
+        <input type=""submit"" id=""submit"" value=""Reply"" class=""btn btn-danger"" />
+    </form>
+    <div class=""replybutton"">
+        <input type=""button"" value=""Reply"" onclick=""$('#myForm_{repl.Id}').show()"" class=""btn btn-default"" />
+    </div>
+    ";
+        foreach (var child in repl.Childrens)
+        {
+            res += RecursChildrens(child, padding + 30);
+
+        }
+
+        return res;
+    }
+}
 <div>
     <h3>Article</h3>
     <p>
@@ -64,21 +94,43 @@
             Author: <i><span class="autorcomment">@i.UserName</span></i>      Date of Post: <i><span class="dateautor">@i.Date</span></i>
         </p>
 
-        @i.TextComment
+        <p class="mycomment">
+            Comment:         @i.TextComment
+        </p>
 
-        <br />
-        <br />
         foreach (var item in ViewBag.Answer)
         {
             if (item.CommentId == i.Id)
             {
-                <div>
-                    <p class="reply">
-                        Reply: <span style="color:black">@item.Text </span>
-                    </p>
-                </div>
+                @*<div>
+                        <p class="reply">
+                            Reply: <span style="color:black">@item.Text </span>
+                        </p>
+                    </div>*@
+
+                @*foreach (var bla in item.Childrens)
+                    {
+                                    <p style="padding-left:60px">
+                                        Reply
+                                        @bla.Text
+                                    </p>
+
+                                    //if (bla.Childrens != null)
+                        foreach (var blabla in bla.Childrens)
+                        {
+                                        <p style="padding-left:90px">
+                                            Reply
+                                            @blabla.Text
+                                        </p>
+                                    }
+                    }*@
+
+                    @Html.Raw(RecursChildrens(item, 60))
+
             }
+
         }
+
         <br />
         <div>
             <form method="post" style="display: none" id="myForm_@i.Id" action="/Home/ReplAdd">
@@ -87,15 +139,14 @@
                 <input type="submit" id="submit" value="Reply" class="btn btn-danger" />
             </form>
             <div class="replybutton">
-                <input type="button" value="Reply" onclick="$('#myForm_@i.Id').show()" class="btn btn-default" />
+                <input type="button" value="Reply Comment" onclick="$('#myForm_@i.Id').show()" class="btn btn-default" />
             </div>
         </div>
     }
 
 
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
-
