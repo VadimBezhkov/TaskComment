@@ -1,5 +1,6 @@
 ﻿using DataProvider;
 using Model;
+using Ninject;
 using Repositories.Interfaces;
 using Repositories.Repositor;
 using ServicesAllComment.Intarface;
@@ -13,7 +14,7 @@ namespace Services
 {
     public class CommentHelper: ICommentHelper
     {
-        private IGenericRepository<Comment> _comentRepository = new CommentRepository(new DataProvider.CommentContext());
+        private IGenericRepository<Comment> _comentRepository;
         public void Set(string UserName,string comment)
         {
             Comment com = new Comment();
@@ -22,7 +23,13 @@ namespace Services
             com.Date = DateTime.Now;
             _comentRepository.Add(com);
         }
-      
+        public CommentHelper()
+        {
+            IKernel ninjectKernel = new StandardKernel();
+            ninjectKernel.Bind<IGenericRepository<Comment>>().To<CommentRepository>();
+            _comentRepository = ninjectKernel.Get<IGenericRepository<Comment>>();
+
+        }
 
     }
 }

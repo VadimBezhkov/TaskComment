@@ -1,4 +1,5 @@
 ﻿using Models;
+using Ninject;
 using Repositories.Interfaces;
 using Repositories.Repositor;
 using Services;
@@ -14,7 +15,7 @@ namespace ServisecRepl
 {
    public class AnswerRepl:IAnswerHelper
     {
-        private IGenericRepository<Repl> _replRepository = new ReplRepository(new DataProvider.CommentContext());
+        private IGenericRepository<Repl> _replRepository;
         public void Set(string text,int Id)
         {
             Repl repl = new Repl();
@@ -22,6 +23,11 @@ namespace ServisecRepl
             repl.ParentId = Id;
             _replRepository.Add(repl);
         }
-
+        public AnswerRepl()
+        {
+            IKernel ninjectKernel = new StandardKernel();
+            ninjectKernel.Bind<IGenericRepository<Repl>>().To<ReplRepository>();
+            _replRepository = ninjectKernel.Get<IGenericRepository<Repl>>();
+        }
     }
 }

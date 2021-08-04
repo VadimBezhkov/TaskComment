@@ -1,4 +1,8 @@
 using DataProvider;
+using Ninject;
+using Ninject.Modules;
+using Ninject.Web.Mvc;
+using Repo.Util;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -18,6 +22,10 @@ namespace CommentTask
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            //NinjectModule registrations = new NinjectRegistrations();
+            //var kernel = new StandardKernel(registrations);
+            //DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));
         }
     }
 }
